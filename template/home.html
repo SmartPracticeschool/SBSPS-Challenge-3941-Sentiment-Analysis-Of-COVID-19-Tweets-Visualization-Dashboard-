@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>COVID-19</title>
+<!--
+<div align="center" class="d">
+<h1>
+<hr>
+<img src="{% static 'c3.jpg' %}" width="300" height="200">
+<br>
+<span > #STAY HOME STAY SAFE</span>
+</h1>
+<hr>
+</div> -->
+
+ <h1 align="center">
+    <img src="{% static 'co.jpg' %}" style="width:100%;">
+
+</h1>
+
+
+</head>
+<body>
+<style>
+    body {
+  background-color: #F8FEF8;
+}
+body {
+  min-width:1050px;
+}
+</style>
+
+</div>
+<style>
+#main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#main  div {
+  width: 200px;
+
+  flex-basis:40px;
+}
+.t{
+margin-left:30px;}
+
+    .{margin:0;padding:0;
+   }
+    .banner{position:relative;width:500%;margin:0 auto;}
+    .banner img{width:100%;}
+    .heading{color:black;position:absolute; top:20%;width:100%;text-align:center;}
+
+
+</style>
+<div id="main"  >
+    <div class="row">
+        <div class="banner">
+         <img src="{% static 'nb.png' %}" height="168" width="200">
+            <h1 class="heading" >{{actives.0}}</h1>
+        </div>
+    </div>
+   &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  <div class="row">
+        <div class="banner">
+         <img src="{% static 'ng.png' %}" height="168" width="200">
+            <h1 class="heading">{{cure.0}}</h1>
+        </div>
+    </div> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      <div class="row">
+        <div class="banner">
+         <img src="{% static 'nr.png' %}" height="168" width="200">
+            <h1 class="heading">{{deaths.0}}</h1>
+        </div>
+    </div>
+   &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp   <div class="row">
+        <div class="banner">
+         <img src="{% static 'no.png' %}" height="168" width="200">
+            <h1 class="heading">{{migr.0}}</h1>
+        </div>
+    </div>
+</div>
+<br>
+<h1 align="center" >Last Updated {{time.1}}</h1>
+<style>
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+}
+th, td {
+  padding: 0.25rem;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+tbody tr:nth-child(odd) {
+  background: #eee;
+}
+  #design3{
+    background-color:#F7D358;
+
+    }
+ .r{
+
+  width: 98%;
+  border: 1px solid white;
+  padding:1px;
+
+}
+</style>
+
+<div id="design" >
+<hr>
+    <h1 align="center" >Statewise Status Of India </h1>
+<hr>
+
+</div>
+<br>
+
+
+<div align="center" class="r" >
+<table class="zebra">
+  <thead>
+    <tr>
+        <th><h2> S.No.</h2></th>
+        <th><h2>Name of State / UT</h2></th>
+        <th><h2 >Total Confirmed cases</h2></th>
+      <th><h2>Cured/
+          Discharged/
+          Migrated</h2></th>
+        <th><h2 >Deaths</h2></th>
+          <th><h2 >Total</h2></th>
+    </tr>
+  </thead>
+  <tbody >
+
+  {% for i in stats %}
+  <tr>
+
+      <td>{{i.0}}</td>
+      <td>{{i.1}}</td>
+       <td>{{i.2}}</td>
+      <td>{{i.3}}</td>
+      <td>{{i.4}}</td>
+      <td>{{i.5}}</td>
+
+
+    </tr>
+
+{% endfor %}
+<tr>
+    <td colspan="2">{{ last.0.0}}</td>
+    <td>{{last.0.1}}</td>
+    <td>{{last.0.2}}</td>
+     <td>{{last.0.3}}</td>
+      <td>{{last.0.4}}</td>
+
+</tr>
+  <tr>
+      <td colspan="6">{{last.1}}</td>
+  </tr>
+   <tr>
+      <td colspan="6">{{last.2}}</td>
+  </tr>
+   <tr>
+      <td colspan="6">{{last.3}}</td>
+  </tr>
+
+  </tbody>
+
+</table>
+
+
+
+
+
+</div>
+<br>
+
+
+
+<div id="design3"  >
+<hr>
+    <h1 align="center" >Download Bar chart as SVG ,PNG or CSV.
+        <br><h2 align="center">(By clicking menu button at right corner of chart)</h2></h1>
+<hr>
+
+</div>
+<br>
+<div class="design3">
+
+<div id="chart"></div>
+
+</div>
+
+<style>
+    .design1{
+    background-color:#FFCC66;
+    }
+     #design{
+    background-color:#69BACA;
+    }
+     .design3{
+    background-color:    #99e9c0;
+    }
+
+    #design4
+    {
+    background-color: red;
+    }
+
+
+
+#chartdiv {
+  width: 100%;
+  height: 400px;
+
+}
+
+</style>
+
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/dataviz.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+
+
+
+<div class="design1">
+<hr>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <script>
+
+
+
+        var options = {
+          series: [{
+          data: [{{stats.0.5}},{{stats.1.5}},{{stats.2.5}},{{stats.3.5}},{{stats.4.5}},{{stats.5.5}},{{stats.6.5}},{{stats.7.5}},{{stats.8.5}},{{stats.9.5}},{{stats.10.5}},{{stats.11.5}},{{stats.12.5}},{{stats.13.5}},{{stats.14.5}},{{stats.15.5}},{{stats.16.5}},{{stats.17.5}},{{stats.18.5}},{{stats.19.5}},{{stats.20.5}},{{stats.21.5}},{{stats.22.5}},{{stats.23.5}},{{stats.24.5}},{{stats.25.5}},{{stats.26.5}},{{stats.27.5}},{{stats.28.5}},{{stats.29.5}},{{stats.30.5}},{{stats.31.5}}]
+        }],
+          chart: {
+          type: 'bar',
+          height: 1500
+        },
+        plotOptions: {
+          bar: {
+            horizontal: true,
+          }
+        },
+        dataLabels: {
+          enabled: true
+        },
+        xaxis: {
+          categories: ['{{stats.0.1}}','{{stats.1.1}}','{{stats.2.1}}','{{stats.3.1}}','{{stats.4.1}}','{{stats.5.1}}','{{stats.6.1}}','{{stats.7.1}}','{{stats.8.1}}','{{stats.9.1}}','{{stats.10.1}}','{{stats.11.1}}','{{stats.12.1}}','{{stats.13.1}}','{{stats.14.1}}','{{stats.15.1}}','{{stats.16.1}}','{{stats.17.1}}','{{stats.18.1}}','{{stats.19.1}}','{{stats.20.1}}','{{stats.21.1}}','{{stats.22.1}}','{{stats.23.1}}','{{stats.24.1}}','{{stats.25.1}}','{{stats.26.1}}','{{stats.27.1}}','{{stats.28.1}}','{{stats.29.1}}','{{stats.30.1}}','{{stats.31.1}}'
+          ],
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+  </script>
+<br>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 50%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+.accordion:after {
+  content: '\002B';
+  color: #777;
+  font-weight: bold;
+  float: right;
+  align:center;
+  margin-left: 5px;
+
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  align:center;
+  width:50%;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+</style>
+<h1 align="center">FAQ's</h1>
+<div align="center">
+
+
+
+    <button class="accordion"><font size="4"><b>Is the new virus the same as SARS?</b></font></button>
+<div class="panel">
+  <p>No. The virus that causes COVID-19 and the one that caused the outbreak of Severe Acute Respiratory Syndrome (SARS) in 2003 are related to each other genetically, but the diseases they cause are quite different.</p>
+</div>
+  <button class="accordion"><font size="4"><b>How does this virus spread?</b></font></button>
+<div class="panel">
+  <p>The new coronavirus is a respiratory virus which spreads primarily through droplets generated when an infected person coughs or sneezes, or through droplets of saliva or discharge from the nose. </p>
+</div>
+    <button class="accordion"><font size="4"><b>Are antibiotics effective in preventung and treating the 2019-nCoV?</b></font></button>
+<div class="panel">
+  <p>No, antibiotics do not work against viruses, only bacteria.  The new coronavirus (2019-nCoV) is a virus and, therefore, antibiotics should not be used as a means of prevention or treatment.  However, if you are hospitalized for the 2019-nCoV, you may receive antibiotics because bacterial co-infection is possible.</p>
+</div>
+  <button class="accordion"><font size="4"><b>Can humans become infected with the 2019-nCoV from an animal source?</b></font></button>
+<div class="panel">
+  <p>Some coronaviruses that infect animals can sometimes be spread to humans and then spread between people, but this is rare. Severe acute respiratory syndrome (SARS) and Middle East respiratory syndrome (MERS) are examples of diseases caused by coronaviruses that originated in animals and spread to people. This is what is suspected to have happened with the virus that caused the current outbreak of COVID-19. However, we do not know the exact source of this virus. The first infections were linked to a live animal market, but the virus is now spreading from person to person</p>
+</div>  <button class="accordion"><font size="4"><b>Are there any specific medicines to prevent or treat 2019-nCoV?</b></font></button>
+<div class="panel">
+  <p>To date, there is no specific medicine recommended to prevent or treat the new coronavirus (2019-nCoV).However, those infected with the virus should receive appropriate care to relieve and treat symptoms, and those with severe illness should receive optimized supportive care. Some specific treatments are under investigation, and will be tested through clinical trials. WHO is helping to accelerate research and development efforts with a range or partners.</p>
+</div>
+
+
+
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+</script>
+
+
+
+
+
+<p>*All the data about COVID-19 is scrapped from Gov site.</p>
+<br>
+<br>
+<br>
+</div>
+</body>
+</html>

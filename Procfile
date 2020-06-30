@@ -1,0 +1,1 @@
+web: gunicorn ibmhc2020.wsgi

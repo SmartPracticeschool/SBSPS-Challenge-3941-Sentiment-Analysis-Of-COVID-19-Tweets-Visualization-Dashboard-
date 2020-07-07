@@ -44,8 +44,7 @@ float:left;
 
 <div class="topnav">
 
-
-    <a href="senti/" ><h1>Analysis</h1></a>
+    <a href="senti/" ><h1>Awareness</h1></a>
 
 </div>
 <!--
@@ -227,8 +226,9 @@ tbody tr:nth-child(odd) {
 
 <div id="design3"  >
 <hr>
-    <h1 align="center" >Download Bar chart as SVG ,PNG or CSV.
-        <br><h2 align="center">(By clicking menu button at right corner of chart)</h2></h1>
+    <h1 align="center" > Total Number of cases in states/UTs
+        <h2 align="center"></h2>
+        <h2 align="center">(Download Bar chart as SVG ,PNG or CSV by clicking menu button at right corner of chart)</h2></h1>
 <hr>
 
 </div>
@@ -239,6 +239,137 @@ tbody tr:nth-child(odd) {
 
 </div>
 
+
+
+
+
+
+
+  <img src="{% static '1.jpg' %}" height="100%" width="33%">
+
+  <img src="{% static '3.jpg' %}" height="100%" width="33%">
+
+  <img src="{% static '2.jpg' %}" height="100%" width="33%">
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<style>
+    .scroll
+    {
+    width:90%;
+    height:700px;
+    border: 5px solid black;
+  padding: 20px;
+  margin: 15px;
+    }
+    .content {
+  text-align: center;
+  position: relative;
+}
+
+.text {
+  position: absolute;
+
+}
+</style>
+
+<h1 align="center">Live Tweets from Twitter</h1>
+<div align="center">
+<div class="scroll">
+    <marquee width="auto" scrollamount="3" height="200px"  direction="up">
+
+        {% for i,j  in twee.items %}
+
+         {% if j == 100 %}
+        <div class="content">
+
+    <div class="text"><h2>{{i}}</h2></div>
+
+      <img src="{% static 'ng.png' %}" width="2000px" height="100px">
+     </div>
+
+         {% elif j == 0 %}
+          <div class="content">
+
+     <div class="text"><h2>{{i}}</h2></div>
+
+      <img src="{% static 'nb.png' %}" width="2000px" height="100px">
+       </div>
+
+         {% else %}
+         <div class="content">
+
+    <div class="text"><h2>{{i}}</h2></div>
+
+      <img src="{% static 'no.png' %}" width="2000px" height="100px">
+     </div>
+
+        {% endif %}
+        {% endfor %}
+
+
+    </marquee>
+
+<!-- Styles -->
+<style>
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+
+</style>
+
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/dataviz.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+<!-- Chart code -->
+<script>
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_dataviz);
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+var chart = am4core.create("chartdiv", am4charts.PieChart3D);
+chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+chart.legend = new am4charts.Legend();
+
+chart.data = [
+  {
+    country: "Neutral",
+    litres:{{val.2}}
+  },
+
+  {
+    country: "Positive",
+    litres: {{val.0}}
+  },
+
+
+  {
+    country: "Negative",
+    litres: {{val.1}}
+  }
+];
+
+var series = chart.series.push(new am4charts.PieSeries3D());
+series.dataFields.value = "litres";
+series.dataFields.category = "country";
+
+}); // end am4core.ready()
+</script>
+
+<!-- HTML -->
+<div id="chartdiv"></div>
+
+</div></div>
+
+
 <style>
     .design1{
     background-color:#FFCC66;
@@ -247,13 +378,16 @@ tbody tr:nth-child(odd) {
     background-color:#69BACA;
     }
      .design3{
-    background-color:    #99e9c0;
+    background-color: #99e9c0;
     }
 
     #design4
     {
     background-color: red;
     }
+    .header
+    {
+    background-color:#F3E5AB;}
 
 
 
@@ -270,12 +404,163 @@ tbody tr:nth-child(odd) {
 <script src="https://www.amcharts.com/lib/4/charts.js"></script>
 <script src="https://www.amcharts.com/lib/4/themes/dataviz.js"></script>
 <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-
-
-
-
-<div class="design1">
+<div>
+<div  class="header"  >
 <hr>
+    <h1 align="center" > Total COVID-19 tests, confirmed cases and deaths
+     </h1>
+<hr>
+
+</div>
+
+<iframe src="https://ourworldindata.org/grapher/covid-tests-cases-deaths?tab=map&time=.." loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+
+
+<div  class="header"  >
+<hr>
+    <h1 align="center" > Daily confirmed cases and deaths
+     </h1>
+<hr>
+
+</div>
+
+<iframe src="https://ourworldindata.org/grapher/daily-covid-cases-deaths" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+
+
+
+<div  class="header"  >
+<hr>
+    <h1 align="center" >Healthcare capacity
+     </h1>
+<hr>
+
+</div>
+
+<div class="half">
+<div class="halfl">
+<iframe src="https://ourworldindata.org/grapher/physicians-per-1000-people" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+
+</div>
+
+<div class="halfr">
+   <iframe src="https://ourworldindata.org/grapher/hospital-beds-per-1000-people" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+</div>
+
+</div>
+
+
+
+
+<style>
+.half
+{width:100%;
+height:100%;
+}
+    .halfl
+    {
+    width:50%;
+    height:50%;
+    float:left;
+    }
+      .halfr
+    {width:50%;
+    height:50%;
+
+    float:right;
+    }
+
+</style>
+<div class="half">
+<div class="halfl">
+<div  class="header"  >
+<hr>
+    <h1 align="center" > Daily confirmed cases and deaths
+     </h1>
+<hr>
+
+</div>
+
+
+<iframe src="https://ourworldindata.org/grapher/total-daily-covid-deaths?time=2020-07-06" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+
+</div>
+
+<div class="halfr">
+<div  class="header"  >
+<hr>
+    <h1 align="center" > Daily Vs Total confirmed deaths
+     </h1>
+<hr>
+
+</div>
+    <iframe src="https://ourworldindata.org/grapher/confirmed-covid-19-deaths-total-vs-daily" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+
+</div>
+
+</div>
+
+
+
+
+<div class="half">
+<div class="halfl">
+<div class="header" >
+<hr>
+    <h1 align="center" > Trajectories of total deaths.
+     </h1>
+<hr>
+
+</div><iframe src="https://ourworldindata.org/grapher/covid-confirmed-deaths-since-5th-death" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+</div>
+
+<div class="halfl">
+<div class="header"  >
+<hr>
+    <h1 align="center" > Trajectories of Daily deaths.
+     </h1>
+<hr>
+
+</div><iframe src="https://ourworldindata.org/grapher/covid-confirmed-daily-deaths-epidemiological-trajectory" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe></div>
+
+</div>
+
+
+
+
+
+<div class="half">
+<div class="halfl">
+<div class="header" >
+<hr>
+    <h1 align="center" > Trajectories of total confirmed cases.
+     </h1>
+<hr>
+
+</div><iframe src="https://ourworldindata.org/grapher/covid-confirmed-cases-since-100th-case" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe></div>
+
+<div class="halfl">
+<div class="header"  >
+<hr>
+    <h1 align="center" > Trajectories of Daily confirmed cases.
+     </h1>
+<hr>
+
+</div><iframe src="https://ourworldindata.org/grapher/covid-confirmed-daily-cases-epidemiological-trajectory" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+</div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
 
 
 
@@ -287,7 +572,7 @@ tbody tr:nth-child(odd) {
 
         var options = {
           series: [{
-          data: [{{stats.0.5}},{{stats.1.5}},{{stats.2.5}},{{stats.3.5}},{{stats.4.5}},{{stats.5.5}},{{stats.6.5}},{{stats.7.5}},{{stats.8.5}},{{stats.9.5}},{{stats.10.5}},{{stats.11.5}},{{stats.12.5}},{{stats.13.5}},{{stats.14.5}},{{stats.15.5}},{{stats.16.5}},{{stats.17.5}},{{stats.18.5}},{{stats.19.5}},{{stats.20.5}},{{stats.21.5}},{{stats.22.5}},{{stats.23.5}},{{stats.24.5}},{{stats.25.5}},{{stats.26.5}},{{stats.27.5}},{{stats.28.5}},{{stats.29.5}},{{stats.30.5}},{{stats.31.5}}]
+          data: [{{stats.0.5}},{{stats.1.5}},{{stats.2.5}},{{stats.3.5}},{{stats.4.5}},{{stats.5.5}},{{stats.6.5}},{{stats.7.5}},{{stats.8.5}},{{stats.9.5}},{{stats.10.5}},{{stats.11.5}},{{stats.12.5}},{{stats.13.5}},{{stats.14.5}},{{stats.15.5}},{{stats.16.5}},{{stats.17.5}},{{stats.18.5}},{{stats.19.5}},{{stats.20.5}},{{stats.21.5}},{{stats.22.5}},{{stats.23.5}},{{stats.24.5}},{{stats.25.5}},{{stats.26.5}},{{stats.27.5}},{{stats.28.5}},{{stats.29.5}},{{stats.30.5}},{{stats.31.5}},{{stats.32.5}},{{stats.33.5}},{{stats.34.5}}]
         }],
           chart: {
           type: 'bar',
@@ -302,7 +587,7 @@ tbody tr:nth-child(odd) {
           enabled: true
         },
         xaxis: {
-          categories: ['{{stats.0.1}}','{{stats.1.1}}','{{stats.2.1}}','{{stats.3.1}}','{{stats.4.1}}','{{stats.5.1}}','{{stats.6.1}}','{{stats.7.1}}','{{stats.8.1}}','{{stats.9.1}}','{{stats.10.1}}','{{stats.11.1}}','{{stats.12.1}}','{{stats.13.1}}','{{stats.14.1}}','{{stats.15.1}}','{{stats.16.1}}','{{stats.17.1}}','{{stats.18.1}}','{{stats.19.1}}','{{stats.20.1}}','{{stats.21.1}}','{{stats.22.1}}','{{stats.23.1}}','{{stats.24.1}}','{{stats.25.1}}','{{stats.26.1}}','{{stats.27.1}}','{{stats.28.1}}','{{stats.29.1}}','{{stats.30.1}}','{{stats.31.1}}'
+          categories: ['{{stats.0.1}}','{{stats.1.1}}','{{stats.2.1}}','{{stats.3.1}}','{{stats.4.1}}','{{stats.5.1}}','{{stats.6.1}}','{{stats.7.1}}','{{stats.8.1}}','{{stats.9.1}}','{{stats.10.1}}','{{stats.11.1}}','{{stats.12.1}}','{{stats.13.1}}','{{stats.14.1}}','{{stats.15.1}}','{{stats.16.1}}','{{stats.17.1}}','{{stats.18.1}}','{{stats.19.1}}','{{stats.20.1}}','{{stats.21.1}}','{{stats.22.1}}','{{stats.23.1}}','{{stats.24.1}}','{{stats.25.1}}','{{stats.26.1}}','{{stats.27.1}}','{{stats.28.1}}','{{stats.29.1}}','{{stats.30.1}}','{{stats.31.1}}','{{stats.32.1}}','{{stats.33.1}}','{{stats.34.1}}'
           ],
         }
         };
@@ -311,103 +596,13 @@ tbody tr:nth-child(odd) {
         chart.render();
   </script>
 <br>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-.accordion {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 50%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-  transition: 0.4s;
-}
-
-.active, .accordion:hover {
-  background-color: #ccc;
-}
-
-.accordion:after {
-  content: '\002B';
-  color: #777;
-  font-weight: bold;
-  float: right;
-  align:center;
-  margin-left: 5px;
-
-}
-
-.active:after {
-  content: "\2212";
-}
-
-.panel {
-  padding: 0 18px;
-  background-color: white;
-  max-height: 0;
-  align:center;
-  width:50%;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-}
-</style>
-<h1 align="center">FAQ's</h1>
-<div align="center">
 
 
 
-    <button class="accordion"><font size="4"><b>Is the new virus the same as SARS?</b></font></button>
-<div class="panel">
-  <p>No. The virus that causes COVID-19 and the one that caused the outbreak of Severe Acute Respiratory Syndrome (SARS) in 2003 are related to each other genetically, but the diseases they cause are quite different.</p>
-</div>
-  <button class="accordion"><font size="4"><b>How does this virus spread?</b></font></button>
-<div class="panel">
-  <p>The new coronavirus is a respiratory virus which spreads primarily through droplets generated when an infected person coughs or sneezes, or through droplets of saliva or discharge from the nose. </p>
-</div>
-    <button class="accordion"><font size="4"><b>Are antibiotics effective in preventung and treating the 2019-nCoV?</b></font></button>
-<div class="panel">
-  <p>No, antibiotics do not work against viruses, only bacteria.  The new coronavirus (2019-nCoV) is a virus and, therefore, antibiotics should not be used as a means of prevention or treatment.  However, if you are hospitalized for the 2019-nCoV, you may receive antibiotics because bacterial co-infection is possible.</p>
-</div>
-  <button class="accordion"><font size="4"><b>Can humans become infected with the 2019-nCoV from an animal source?</b></font></button>
-<div class="panel">
-  <p>Some coronaviruses that infect animals can sometimes be spread to humans and then spread between people, but this is rare. Severe acute respiratory syndrome (SARS) and Middle East respiratory syndrome (MERS) are examples of diseases caused by coronaviruses that originated in animals and spread to people. This is what is suspected to have happened with the virus that caused the current outbreak of COVID-19. However, we do not know the exact source of this virus. The first infections were linked to a live animal market, but the virus is now spreading from person to person</p>
-</div>  <button class="accordion"><font size="4"><b>Are there any specific medicines to prevent or treat 2019-nCoV?</b></font></button>
-<div class="panel">
-  <p>To date, there is no specific medicine recommended to prevent or treat the new coronavirus (2019-nCoV).However, those infected with the virus should receive appropriate care to relieve and treat symptoms, and those with severe illness should receive optimized supportive care. Some specific treatments are under investigation, and will be tested through clinical trials. WHO is helping to accelerate research and development efforts with a range or partners.</p>
+<div>
 </div>
 
 
 
-</div>
-
-<script>
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
-  });
-}
-</script>
-
-
-
-
-
-<p>*All the data about COVID-19 is scrapped from Gov site.</p>
-<br>
-<br>
-<br>
-</div>
 </body>
 </html>

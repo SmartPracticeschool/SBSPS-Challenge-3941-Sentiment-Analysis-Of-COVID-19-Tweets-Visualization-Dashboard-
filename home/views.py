@@ -15,6 +15,7 @@ from textblob import TextBlob
 def home(request):
     actives = []
     cure = []
+    stats = []
     deaths = []
     migr = []
     time = []
@@ -54,7 +55,7 @@ def home(request):
         for div in soup.findAll('li', attrs={'class': 'bg-orange'}):
             mig.append(div.text.strip())
             m.append(mig[0].replace("\n", " "))
-        stats = []
+
         all_rows = soup.find_all('tr')
         for row in all_rows:
             stat = extract_contents(row.find_all('td'))
@@ -78,11 +79,6 @@ def home(request):
 
     #print(last)
 
-    return render(request,'home.html',{'time':time,'cure':cure,'deaths':deaths,'actives':actives,'last':last,'migr':migr,'stats':stats})
-
-
-
-def senti(request):
     consumer_key="MV7mO4kcvb5vfT37D1SleIvjP"
     consumer_secret="ZEFUhWnfxHt8FHIiE30uj2VHSoTWCkJyHizmZPJoaY9PetSe3n"
     access_token="1239788459574702081-4821HJoOqWgLRuJlkchCtv36tw19PN"
@@ -112,7 +108,7 @@ def senti(request):
         po = 0
         neu = 0
         neg = 0
-        public_tweet = api.search(tweet, count=100, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
+        public_tweet = api.search(tweet, count=10, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
         for i in public_tweet:
             parsed_tweet['text'] = i.text
             parsed_tweet['user'] = i.user.screen_name
@@ -139,6 +135,16 @@ def senti(request):
 
     search_tweets("corona")
     print(val)
-    context={'twee':twee,'sentiment':sentiment,'val': val}
+    context={'twee':twee,'sentiment':sentiment,'val': val,'time':time,'cure':cure,'deaths':deaths,'actives':actives,'last':last,'migr':migr,'stats':stats}
     #print(sentiment)
-    return render(request,'senti.html',context)
+
+
+
+    return render(request,'home.html',context)
+
+
+
+def senti(request):
+    return render(request,'senti.html')
+
+

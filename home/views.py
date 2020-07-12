@@ -144,7 +144,7 @@ def home(request):
 
 
 
-def senti(request):
-    return render(request,'senti.html')
+def page2(request):
+    return render(request,'page2.html')
 
 

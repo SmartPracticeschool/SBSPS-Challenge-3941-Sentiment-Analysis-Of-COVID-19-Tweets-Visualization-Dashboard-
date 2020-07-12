@@ -108,7 +108,7 @@ def home(request):
         po = 0
         neu = 0
         neg = 0
-        public_tweet = api.search(tweet, count=10, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
+        public_tweet = api.search(tweet, count=50, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
         for i in public_tweet:
             parsed_tweet['text'] = i.text
             parsed_tweet['user'] = i.user.screen_name
@@ -133,7 +133,7 @@ def home(request):
         val.append(neg)
         val.append(neu)
 
-    search_tweets("corona")
+    search_tweets("#corona")
     print(val)
     context={'twee':twee,'sentiment':sentiment,'val': val,'time':time,'cure':cure,'deaths':deaths,'actives':actives,'last':last,'migr':migr,'stats':stats}
     #print(sentiment)

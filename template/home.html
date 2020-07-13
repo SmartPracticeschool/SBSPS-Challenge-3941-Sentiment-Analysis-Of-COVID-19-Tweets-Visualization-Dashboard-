@@ -372,7 +372,18 @@ tbody tr:nth-child(odd) {
 
 }
 </style>
-
+<script>
+    $(function(){
+     $('form').on('submit', function(e){
+         e.preventDefault();
+         $.ajax({
+             url: $(this).attr('action'),
+             method: $(this).attr('method'),
+             success: function(data){ $('#target').html(data) }
+         });
+     });
+});
+</script>
 <h1 align="center">Live Tweets from Twitter</h1>
 <div align="center">
 <div class="scroll">

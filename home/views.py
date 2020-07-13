@@ -19,7 +19,7 @@ def home(request):
     deaths = []
     migr = []
     time = []
-    URL = 'https://www.mohfw.gov.in/'
+    URL = ''
     extract_contents = lambda row: [x.text.replace('\n', '') for x in row]
 
     try:
@@ -79,10 +79,10 @@ def home(request):
 
     #print(last)
 
-    consumer_key="MV7mO4kcvb5vfT37D1SleIvjP"
-    consumer_secret="ZEFUhWnfxHt8FHIiE30uj2VHSoTWCkJyHizmZPJoaY9PetSe3n"
-    access_token="1239788459574702081-4821HJoOqWgLRuJlkchCtv36tw19PN"
-    access_token_secret="qNYQ346ztGagyUuFUzIrf6fEZiICYgA1fg263W4WQmnrO"
+    consumer_key=""
+    consumer_secret=""
+    access_token=""
+    access_token_secret=""
     auth=tweepy.OAuthHandler(consumer_key,consumer_secret)
     auth.set_access_token(access_token,access_token_secret)
     api=tweepy.API(auth)
@@ -134,10 +134,7 @@ def home(request):
         val.append(neu)
 
     search_tweets("#corona")
-    print(val)
     context={'twee':twee,'sentiment':sentiment,'val': val,'time':time,'cure':cure,'deaths':deaths,'actives':actives,'last':last,'migr':migr,'stats':stats}
-    #print(sentiment)
-
 
 
     return render(request,'home.html',context)
